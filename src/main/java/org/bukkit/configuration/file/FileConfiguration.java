@@ -184,7 +184,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
 
     @Override
     public FileConfigurationOptions options() {
-        if (options == null) {
+        if (!(options instanceof FileConfigurationOptions)) {
             options = new FileConfigurationOptions(this);
         }
 

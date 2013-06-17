@@ -3,6 +3,7 @@ package org.bukkit.configuration;
 import java.util.Map;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.configuration.file.FileConfigurationOptions;
 
 /**
  * This is a {@link Configuration} implementation that does not save or load
@@ -70,7 +71,7 @@ public class MemoryConfiguration extends MemorySection implements Configuration 
     }
 
     public MemoryConfigurationOptions options() {
-        if (options == null) {
+        if (!(options instanceof FileConfigurationOptions)) {//old=>options == null
             options = new MemoryConfigurationOptions(this);
         }
 
