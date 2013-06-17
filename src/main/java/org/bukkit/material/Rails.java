@@ -147,6 +147,8 @@ public class Rails extends MaterialData {
         case SOUTH_WEST:
             setData((byte) 0x9);
             break;
+        default:
+        	break;
         }
     }
 

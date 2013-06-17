@@ -128,6 +128,8 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
             case NORTH:
                 data |= 0x4;
                 break;
+            default:
+            	break;
             }
         }
         setData(data);
