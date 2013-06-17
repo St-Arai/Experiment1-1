@@ -187,7 +187,7 @@ public abstract class ChunkGenerator {
      * @return short[][] containing the types for each block created by this generator
      */
     public byte[][] generateBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
-        return null; // Default - returns null, which drives call to generate()
+        return new byte[1][1]; // Default - returns null, which drives call to generate()
     }
 
     /**
