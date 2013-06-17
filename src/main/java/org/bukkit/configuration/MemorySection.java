@@ -712,7 +712,7 @@ public class MemorySection implements ConfigurationSection {
             MemorySection sec = (MemorySection) section;
 
             for (Map.Entry<String, Object> entry : sec.map.entrySet()) {
-                output.add(createPath(section, entry.getKey(), this));
+                output.add(createPath(section, entry.getKey(), this, false));
 
                 if ((deep) && (entry.getValue() instanceof ConfigurationSection)) {
                     ConfigurationSection subsection = (ConfigurationSection) entry.getValue();
@@ -723,7 +723,7 @@ public class MemorySection implements ConfigurationSection {
             Set<String> keys = section.getKeys(deep);
 
             for (String key : keys) {
-                output.add(createPath(section, key, this));
+                output.add(createPath(section, key, this, false));
             }
         }
     }
@@ -733,7 +733,7 @@ public class MemorySection implements ConfigurationSection {
             MemorySection sec = (MemorySection) section;
 
             for (Map.Entry<String, Object> entry : sec.map.entrySet()) {
-                output.put(createPath(section, entry.getKey(), this), entry.getValue());
+                output.put(createPath(section, entry.getKey(), this, false), entry.getValue());
 
                 if (entry.getValue() instanceof ConfigurationSection) {
                     if (deep) {
@@ -745,7 +745,7 @@ public class MemorySection implements ConfigurationSection {
             Map<String, Object> values = section.getValues(deep);
 
             for (Map.Entry<String, Object> entry : values.entrySet()) {
-                output.put(createPath(section, entry.getKey(), this), entry.getValue());
+                output.put(createPath(section, entry.getKey(), this, false), entry.getValue());
             }
         }
     }
@@ -760,7 +760,7 @@ public class MemorySection implements ConfigurationSection {
      * @return Full path of the section from its root.
      */
     public static String createPath(ConfigurationSection section, String key) {
-        return createPath(section, key, (section == null) ? null : section.getRoot());
+        return createPath(section, key, section.getRoot(), (section == null));
     }
 
     /**
@@ -773,13 +773,13 @@ public class MemorySection implements ConfigurationSection {
      * @param relativeTo Section to create the path relative to.
      * @return Full path of the section from its root.
      */
-    public static String createPath(ConfigurationSection section, String key, ConfigurationSection relativeTo) {
+    public static String createPath(ConfigurationSection section, String key, ConfigurationSection relativeTo, boolean relativeToIsNull) {
         Validate.notNull(section, "Cannot create path without a section");
         Configuration root = section.getRoot();
         char separator = root.options().pathSeparator();
 
         StringBuilder builder = new StringBuilder();
-        for (ConfigurationSection parent = section; (parent != null) && (parent != relativeTo); parent = parent.getParent()) {
+        for (ConfigurationSection parent = section; (parent != null) && (parent != relativeTo || relativeToIsNull); parent = parent.getParent()) {
             if (builder.length() > 0) {
                 builder.insert(0, separator);
             }
