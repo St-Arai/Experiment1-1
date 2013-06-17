@@ -321,7 +321,9 @@ public final class SimplePluginManager implements PluginManager {
 
         File updateFile = new File(updateDirectory, file.getName());
         if (updateFile.isFile() && FileUtil.copy(updateFile, file)) {
-            updateFile.delete();
+        	if(!updateFile.delete()){
+        		return; //TODO:exception handling
+        	}
         }
     }
 
