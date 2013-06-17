@@ -179,14 +179,14 @@ public class HelpCommand extends VanillaCommand {
         if (s1 == null && s2 == null) {
             return 0;
         }
-        if (s1 != null && s2 == null) {
+        else if (s1 != null && s2 == null) {
             return s1.length();
         }
-        if (s1 == null && s2 != null) {
+        else if (s1 == null && s2 != null) {
             return s2.length();
         }
 
-        if (s1 != null && s2 != null) {
+        else{
 	        int s1Len = s1.length();
 	        int s2Len = s2.length();
 	        int[][] H = new int[s1Len + 2][s2Len + 2];

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
@@ -176,15 +177,22 @@ public class PermissibleBase implements Permissible {
     }
 
     private void calculateChildPermissions(Map<String, Boolean> children, boolean invert, PermissionAttachment attachment) {
-        Set<String> keys = children.keySet();
+        Set<Entry<String,Boolean>> keys = children.entrySet();
 
+<<<<<<< HEAD
         for (String name : keys) {
             Permission perm = Bukkit.getServer().getPluginManager().getPermission(name);
             boolean value = children.get(name) ^ invert;
             String lname = name.toLowerCase();
+=======
+        for (Entry<String, Boolean> name : keys) {
+            Permission perm = Bukkit.getServer().getPluginManager().getPermission(name.getKey());
+            boolean value = name.getValue() ^ invert;
+            String lname = name.getKey().toLowerCase(new Locale("en_US"));
+>>>>>>> 159ea63ae44d4cd444aca2548f1d7c71736d6739
 
             permissions.put(lname, new PermissionAttachmentInfo(parent, lname, attachment, value));
-            Bukkit.getServer().getPluginManager().subscribeToPermission(name, parent);
+            Bukkit.getServer().getPluginManager().subscribeToPermission(name.getKey(), parent);
 
             if (perm != null) {
                 calculateChildPermissions(perm.getChildren(), !value, attachment);

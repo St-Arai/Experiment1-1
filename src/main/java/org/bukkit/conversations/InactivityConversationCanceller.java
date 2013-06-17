@@ -35,6 +35,12 @@ public class InactivityConversationCanceller implements ConversationCanceller {
     }
 
     public ConversationCanceller clone() {
+    	try {
+			super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return new InactivityConversationCanceller(plugin, timeoutSeconds);
     }
 
