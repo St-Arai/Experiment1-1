@@ -321,7 +321,9 @@ public final class SimplePluginManager implements PluginManager {
 
         File updateFile = new File(updateDirectory, file.getName());
         if (updateFile.isFile() && FileUtil.copy(updateFile, file)) {
-            updateFile.delete();
+        	if(!updateFile.delete()){
+        		return; //TODO:exception handling
+        	}
         }
     }
 
@@ -537,13 +539,9 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     private HandlerList getEventListeners(Class<? extends Event> type) {
-        try {
             Method method = getRegistrationClass(type).getDeclaredMethod("getHandlerList");
             method.setAccessible(true);
             return (HandlerList) method.invoke(null);
-        } catch (Exception e) {
-            throw new IllegalPluginAccessException(e.toString());
-        }
     }
 
     private Class<? extends Event> getRegistrationClass(Class<? extends Event> clazz) {

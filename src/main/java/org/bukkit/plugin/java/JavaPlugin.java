@@ -154,7 +154,9 @@ public abstract class JavaPlugin extends PluginBase {
         File outDir = new File(dataFolder, resourcePath.substring(0, lastIndex >= 0 ? lastIndex : 0));
 
         if (!outDir.exists()) {
-            outDir.mkdirs();
+            if(!outDir.mkdirs()){
+            	return; //TODO:exception handling
+            }
         }
 
         try {
@@ -257,7 +259,9 @@ public abstract class JavaPlugin extends PluginBase {
                 DataSourceConfig ds = db.getDataSourceConfig();
 
                 ds.setUrl(replaceDatabaseString(ds.getUrl()));
-                dataFolder.mkdirs();
+                if(!dataFolder.mkdirs()){
+                	return;//TODO:exception handling
+                }
 
                 ClassLoader previous = Thread.currentThread().getContextClassLoader();
 
