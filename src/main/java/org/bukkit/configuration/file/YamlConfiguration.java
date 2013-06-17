@@ -174,6 +174,7 @@ public class YamlConfiguration extends FileConfiguration {
         try {
             config.load(file);
         } catch (FileNotFoundException ex) {
+        	return null; //TODO:exception handling
         } catch (IOException ex) {
             Bukkit.getLogger().log(Level.SEVERE, "Cannot load " + file, ex);
         } catch (InvalidConfigurationException ex) {
