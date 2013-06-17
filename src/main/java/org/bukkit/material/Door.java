@@ -109,6 +109,9 @@ public class Door extends MaterialData implements Directional, Openable {
         case SOUTH:
             data |= 0x3;
             break;
+            
+        default:
+        	break;
         }
         setData(data);
     }
