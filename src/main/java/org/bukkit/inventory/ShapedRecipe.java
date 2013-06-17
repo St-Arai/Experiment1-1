@@ -28,7 +28,7 @@ public class ShapedRecipe implements Recipe {
      */
     public ShapedRecipe(ItemStack result) {
         this.output = new ItemStack(result);
-        this.rows = new String[];
+        this.rows = new String[] {};
     }
 
     /**

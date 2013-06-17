@@ -77,7 +77,7 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
     public void setFormat(final String format) throws IllegalFormatException, NullPointerException {
         // Oh for a better way to do this!
         try {
-            String.format(format, player, message);
+        	String.format(format, player, message);
         } catch (RuntimeException ex) {
             ex.fillInStackTrace();
             throw ex;
