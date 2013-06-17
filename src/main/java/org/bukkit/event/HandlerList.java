@@ -13,7 +13,7 @@ public class HandlerList {
     /**
      * Handler array. This field being an array is the key to this system's speed.
      */
-    private volatile RegisteredListener[] handlers = null;
+    private RegisteredListener[] handlers = null;
 
     /**
      * Dynamic handler lists. These are changed using register() and
