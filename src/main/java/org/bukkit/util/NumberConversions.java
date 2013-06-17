@@ -5,16 +5,15 @@ package org.bukkit.util;
  */
 public final class NumberConversions {
     private NumberConversions() {}
-    final static double EPS = 0.0000001;
 
     public static int floor(double num) {
         final int floor = (int) num;
-        return (Math.abs(floor - num) < EPS) ? floor : floor - (int) (Double.doubleToRawLongBits(num) >>> 63);
+        return Math.abs(floor - num) < 1e-8 ? floor : floor - (int) (Double.doubleToRawLongBits(num) >>> 63);
     }
 
     public static int ceil(final double num) {
         final int floor = (int) num;
-        return (Math.abs(floor - num) < EPS) ? floor : floor + (int) (~Double.doubleToRawLongBits(num) >>> 63);
+        return Math.abs(floor - num) < 1e-8 ? floor : floor + (int) (~Double.doubleToRawLongBits(num) >>> 63);
     }
 
     public static int round(double num) {
