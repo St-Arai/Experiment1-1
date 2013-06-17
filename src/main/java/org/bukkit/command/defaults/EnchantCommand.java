@@ -130,7 +130,8 @@ public class EnchantCommand extends VanillaCommand {
         }
 
         if (args.length == 2) {
-            return StringUtil.copyPartialMatches(args[1], ENCHANTMENT_NAMES, new ArrayList<String>(ENCHANTMENT_NAMES.size()));
+        	ArrayList<String> ss = StringUtil.copyPartialMatches(args[1], ENCHANTMENT_NAMES, new ArrayList<String>(ENCHANTMENT_NAMES.size()));
+            return ss;
         }
 
         if (args.length == 3 || args.length == 4) {
