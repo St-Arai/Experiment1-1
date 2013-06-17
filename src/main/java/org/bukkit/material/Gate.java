@@ -64,7 +64,7 @@ public class Gate extends MaterialData implements Directional, Openable {
     }
 
     public boolean isOpen() {
-        return (getData() & OPEN_BIT) > 0;
+        return (getData() & OPEN_BIT) != 0;
     }
 
     public void setOpen(boolean isOpen) {
