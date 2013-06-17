@@ -32,7 +32,7 @@ public class Gate extends MaterialData implements Directional, Openable {
         switch (face) {
             default:
             case EAST:
-                data |= GATE_SOUTH;
+                //data |= GATE_SOUTH;
                 break;
             case SOUTH:
                 data |= GATE_WEST;
