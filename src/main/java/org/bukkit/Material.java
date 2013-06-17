@@ -1,6 +1,7 @@
 package org.bukkit;
 
 import java.lang.reflect.Constructor;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.lang.Validate;
@@ -585,7 +586,7 @@ public enum Material {
         } catch (NumberFormatException ex) {}
 
         if (result == null) {
-            String filtered = name.toUpperCase();
+            String filtered = name.toUpperCase(new Locale("en_US"));
 
             filtered = filtered.replaceAll("\\s+", "_").replaceAll("\\W", "");
             result = BY_NAME.get(filtered);

@@ -1,6 +1,7 @@
 package org.bukkit.permissions;
 
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 import org.bukkit.plugin.Plugin;
 
@@ -78,7 +79,7 @@ public class PermissionAttachment {
      * @param value New value of the permission
      */
     public void setPermission(String name, boolean value) {
-        permissions.put(name.toLowerCase(), value);
+        permissions.put(name.toLowerCase(new Locale("en_US")), value);
         permissible.recalculatePermissions();
     }
 
@@ -100,7 +101,7 @@ public class PermissionAttachment {
      * @param name Name of the permission to remove
      */
     public void unsetPermission(String name) {
-        permissions.remove(name.toLowerCase());
+        permissions.remove(name.toLowerCase(new Locale("en_US")));
         permissible.recalculatePermissions();
     }
 

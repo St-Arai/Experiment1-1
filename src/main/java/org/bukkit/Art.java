@@ -1,6 +1,7 @@
 package org.bukkit;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 import org.apache.commons.lang.Validate;
 
@@ -95,13 +96,13 @@ public enum Art {
     public static Art getByName(String name) {
         Validate.notNull(name, "Name cannot be null");
 
-        return BY_NAME.get(name.toLowerCase().replaceAll("_", ""));
+        return BY_NAME.get(name.toLowerCase(new Locale("en_US")).replaceAll("_", ""));
     }
 
     static {
         for (Art art : values()) {
             BY_ID.put(art.id, art);
-            BY_NAME.put(art.toString().toLowerCase().replaceAll("_", ""), art);
+            BY_NAME.put(art.toString().toLowerCase(new Locale("en_US")).replaceAll("_", ""), art);
         }
     }
 }

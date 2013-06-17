@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -124,7 +125,7 @@ public class SimpleCommandMap implements CommandMap {
      *         If isAlias was false a return of false indicates the fallbackPrefix was used one or more times to create a unique name for the command
      */
     private synchronized boolean register(String label, String fallbackPrefix, Command command, boolean isAlias) {
-        String lowerLabel = label.trim().toLowerCase();
+        String lowerLabel = label.trim().toLowerCase(new Locale("en_US"));
 
         if (isAlias && knownCommands.containsKey(lowerLabel)) {
             // Request is for an alias and it conflicts with a existing command or previous alias ignore it
@@ -132,7 +133,7 @@ public class SimpleCommandMap implements CommandMap {
             return false;
         }
 
-        String lowerPrefix = fallbackPrefix.trim().toLowerCase();
+        String lowerPrefix = fallbackPrefix.trim().toLowerCase(new Locale("en_US"));
         boolean registerdPassedLabel = true;
 
         // If the command exists but is an alias we overwrite it, otherwise we rename it based on the fallbackPrefix
@@ -177,7 +178,7 @@ public class SimpleCommandMap implements CommandMap {
             return false;
         }
 
-        String sentCommandLabel = args[0].toLowerCase();
+        String sentCommandLabel = args[0].toLowerCase(new Locale("en_US"));
         Command target = getCommand(sentCommandLabel);
 
         if (target == null) {
@@ -207,7 +208,7 @@ public class SimpleCommandMap implements CommandMap {
     }
 
     public Command getCommand(String name) {
-        Command target = knownCommands.get(name.toLowerCase());
+        Command target = knownCommands.get(name.toLowerCase(new Locale("en_US")));
         if (target == null) {
             target = getFallback(name);
         }
@@ -311,9 +312,9 @@ public class SimpleCommandMap implements CommandMap {
             // We register these as commands so they have absolute priority.
 
             if (targets.size() > 0) {
-                knownCommands.put(alias.toLowerCase(), new MultipleCommandAlias(alias.toLowerCase(), targets.toArray(new Command[0])));
+                knownCommands.put(alias.toLowerCase(new Locale("en_US")), new MultipleCommandAlias(alias.toLowerCase(new Locale("en_US")), targets.toArray(new Command[0])));
             } else {
-                knownCommands.remove(alias.toLowerCase());
+                knownCommands.remove(alias.toLowerCase(new Locale("en_US")));
             }
 
             if (bad.length() > 0) {

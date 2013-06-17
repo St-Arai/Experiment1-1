@@ -1,5 +1,7 @@
 package org.bukkit.conversations;
 
+import java.util.Locale;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.BooleanUtils;
 
@@ -15,7 +17,7 @@ public abstract class BooleanPrompt extends ValidatingPrompt{
     @Override
     protected boolean isInputValid(ConversationContext context, String input) {
         String[] accepted = {"true", "false", "on", "off", "yes", "no"};
-        return ArrayUtils.contains(accepted, input.toLowerCase());
+        return ArrayUtils.contains(accepted, input.toLowerCase(new Locale("en_US")));
     }
 
     @Override

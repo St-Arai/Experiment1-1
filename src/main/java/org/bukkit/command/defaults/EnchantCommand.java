@@ -3,6 +3,7 @@ package org.bukkit.command.defaults;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.lang.Validate;
@@ -53,7 +54,7 @@ public class EnchantCommand extends VanillaCommand {
                 String itemName = item.getType().toString().replaceAll("_", " ");
                 itemName = WordUtils.capitalizeFully(itemName);
 
-                Enchantment enchantment = getEnchantment(args[1].toUpperCase());
+                Enchantment enchantment = getEnchantment(args[1].toUpperCase(new Locale("en_US")));
                 if (enchantment == null) {
                     sender.sendMessage(String.format("Enchantment does not exist: %s", args[1]));
                 }  else {

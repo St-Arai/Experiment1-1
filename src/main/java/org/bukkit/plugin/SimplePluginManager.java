@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
@@ -560,11 +561,11 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     public Permission getPermission(String name) {
-        return permissions.get(name.toLowerCase());
+        return permissions.get(name.toLowerCase(new Locale("en_US")));
     }
 
     public void addPermission(Permission perm) {
-        String name = perm.getName().toLowerCase();
+        String name = perm.getName().toLowerCase(new Locale("en_US"));
 
         if (permissions.containsKey(name)) {
             throw new IllegalArgumentException("The permission " + name + " is already defined!");
@@ -583,7 +584,7 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     public void removePermission(String name) {
-        permissions.remove(name.toLowerCase());
+        permissions.remove(name.toLowerCase(new Locale("en_US")));
     }
 
     public void recalculatePermissionDefaults(Permission perm) {
@@ -615,7 +616,7 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     public void subscribeToPermission(String permission, Permissible permissible) {
-        String name = permission.toLowerCase();
+        String name = permission.toLowerCase(new Locale("en_US"));
         Map<Permissible, Boolean> map = permSubs.get(name);
 
         if (map == null) {
@@ -627,7 +628,7 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     public void unsubscribeFromPermission(String permission, Permissible permissible) {
-        String name = permission.toLowerCase();
+        String name = permission.toLowerCase(new Locale("en_US"));
         Map<Permissible, Boolean> map = permSubs.get(name);
 
         if (map != null) {
@@ -640,7 +641,7 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     public Set<Permissible> getPermissionSubscriptions(String permission) {
-        String name = permission.toLowerCase();
+        String name = permission.toLowerCase(new Locale("en_US"));
         Map<Permissible, Boolean> map = permSubs.get(name);
 
         if (map == null) {
