@@ -56,7 +56,9 @@ public class TimingsCommand extends BukkitCommand {
             int index = 0;
             int pluginIdx = 0;
             File timingFolder = new File("timings");
-            timingFolder.mkdirs();
+            if(!timingFolder.mkdirs()){
+            	return false;
+            }
             File timings = new File(timingFolder, "timings.txt");
             File names = null;
             while (timings.exists()) timings = new File(timingFolder, "timings" + (++index) + ".txt");
