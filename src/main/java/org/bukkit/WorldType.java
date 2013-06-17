@@ -1,6 +1,8 @@
 package org.bukkit;
 
 import com.google.common.collect.Maps;
+
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -35,7 +37,7 @@ public enum WorldType {
      * @return Requested WorldType, or null if not found
      */
     public static WorldType getByName(String name) {
-        return BY_NAME.get(name.toUpperCase());
+        return BY_NAME.get(name.toUpperCase(new Locale("en_US")));
     }
 
     static {

@@ -2,6 +2,7 @@ package org.bukkit.command.defaults;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -50,7 +51,7 @@ public class DefaultGameModeCommand extends VanillaCommand {
         }
 
         Bukkit.getServer().setDefaultGameMode(mode);
-        Command.broadcastCommandMessage(sender, "Default game mode set to " + mode.toString().toLowerCase());
+        Command.broadcastCommandMessage(sender, "Default game mode set to " + mode.toString().toLowerCase(new Locale("en_US")));
 
         return true;
     }

@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -319,11 +320,11 @@ public abstract class JavaPlugin extends PluginBase {
      * @return the plugin command if found, otherwise null
      */
     public PluginCommand getCommand(String name) {
-        String alias = name.toLowerCase();
+        String alias = name.toLowerCase(new Locale("en_US"));
         PluginCommand command = getServer().getPluginCommand(alias);
 
         if ((command != null) && (command.getPlugin() != this)) {
-            command = getServer().getPluginCommand(description.getName().toLowerCase() + ":" + alias);
+            command = getServer().getPluginCommand(description.getName().toLowerCase(new Locale("en_US")) + ":" + alias);
         }
 
         if ((command != null) && (command.getPlugin() == this)) {

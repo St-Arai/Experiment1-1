@@ -4,6 +4,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Locale;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
@@ -71,7 +72,7 @@ public @interface Warning {
             if (value == null) {
                 return DEFAULT;
             }
-            WarningState state = values.get(value.toLowerCase());
+            WarningState state = values.get(value.toLowerCase(new Locale("en_US")));
             if (state == null) {
                 return DEFAULT;
             }

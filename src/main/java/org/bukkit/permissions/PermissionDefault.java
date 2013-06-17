@@ -1,6 +1,7 @@
 package org.bukkit.permissions;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -47,7 +48,7 @@ public enum PermissionDefault {
      * @return Specified value, or null if not found
      */
     public static PermissionDefault getByName(String name) {
-        return lookup.get(name.toLowerCase().replaceAll("[^a-z!]", ""));
+        return lookup.get(name.toLowerCase(new Locale("en_US")).replaceAll("[^a-z!]", ""));
     }
 
     @Override

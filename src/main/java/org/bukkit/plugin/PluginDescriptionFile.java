@@ -5,6 +5,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.bukkit.command.CommandExecutor;
@@ -915,7 +916,7 @@ public final class PluginDescriptionFile {
 
         if (map.get("load") != null) {
             try {
-                order = PluginLoadOrder.valueOf(((String) map.get("load")).toUpperCase().replaceAll("\\W", ""));
+                order = PluginLoadOrder.valueOf(((String) map.get("load")).toUpperCase(new Locale("en_US")).replaceAll("\\W", ""));
             } catch (ClassCastException ex) {
                 throw new InvalidDescriptionException(ex, "load is of wrong type");
             } catch (IllegalArgumentException ex) {

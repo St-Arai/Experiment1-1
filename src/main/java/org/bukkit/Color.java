@@ -1,5 +1,6 @@
 package org.bukkit;
 
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.lang.Validate;
@@ -334,6 +335,6 @@ public final class Color implements ConfigurationSerializable {
 
     @Override
     public String toString() {
-        return "Color:[rgb0x" + Integer.toHexString(getRed()).toUpperCase() + Integer.toHexString(getGreen()).toUpperCase() + Integer.toHexString(getBlue()).toUpperCase() + "]";
+        return "Color:[rgb0x" + Integer.toHexString(getRed()).toUpperCase(new Locale("en_US")) + Integer.toHexString(getGreen()).toUpperCase(new Locale("en_US")) + Integer.toHexString(getBlue()).toUpperCase(new Locale("en_US")) + "]";
     }
 }

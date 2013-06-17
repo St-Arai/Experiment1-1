@@ -3,6 +3,7 @@ package org.bukkit.command.defaults;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -49,9 +50,9 @@ public class VersionCommand extends BukkitCommand {
             }
 
             boolean found = false;
-            pluginName = pluginName.toLowerCase();
+            pluginName = pluginName.toLowerCase(new Locale("en_US"));
             for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-                if (plugin.getName().toLowerCase().contains(pluginName)) {
+                if (plugin.getName().toLowerCase(new Locale("en_US")).contains(pluginName)) {
                     describeToSender(plugin, sender);
                     found = true;
                 }
@@ -116,7 +117,7 @@ public class VersionCommand extends BukkitCommand {
 
         if (args.length == 1) {
             List<String> completions = new ArrayList<String>();
-            String toComplete = args[0].toLowerCase();
+            String toComplete = args[0].toLowerCase(new Locale("en_US"));
             for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
                 if (StringUtil.startsWithIgnoreCase(plugin.getName(), toComplete)) {
                     completions.add(plugin.getName());
