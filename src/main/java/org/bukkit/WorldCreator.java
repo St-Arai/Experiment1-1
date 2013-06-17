@@ -1,6 +1,6 @@
 package org.bukkit;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import org.bukkit.command.CommandSender;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
@@ -27,7 +27,7 @@ public class WorldCreator {
         }
 
         this.name = name;
-        this.seed = (new Random()).nextLong();
+        this.seed = (new SecureRandom()).nextLong();
     }
 
     /**
