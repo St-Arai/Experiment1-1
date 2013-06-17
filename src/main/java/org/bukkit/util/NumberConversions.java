@@ -8,12 +8,12 @@ public final class NumberConversions {
 
     public static int floor(double num) {
         final int floor = (int) num;
-        return floor == num ? floor : floor - (int) (Double.doubleToRawLongBits(num) >>> 63);
+        return Math.abs(floor - num) < 1e-8 ? floor : floor - (int) (Double.doubleToRawLongBits(num) >>> 63);
     }
 
     public static int ceil(final double num) {
         final int floor = (int) num;
-        return floor == num ? floor : floor + (int) (~Double.doubleToRawLongBits(num) >>> 63);
+        return Math.abs(floor - num) < 1e-8 ? floor : floor + (int) (~Double.doubleToRawLongBits(num) >>> 63);
     }
 
     public static int round(double num) {
