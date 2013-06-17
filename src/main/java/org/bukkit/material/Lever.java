@@ -108,7 +108,6 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
 
             case EAST:
             case WEST:
-                data |= 0x0;
                 break;
             }
         } else {
