@@ -2,6 +2,7 @@ package org.bukkit.plugin;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -540,9 +541,32 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     private HandlerList getEventListeners(Class<? extends Event> type) {
-            Method method = getRegistrationClass(type).getDeclaredMethod("getHandlerList");
-            method.setAccessible(true);
-            return (HandlerList) method.invoke(null);
+            Method method = null;
+			try {
+				method = getRegistrationClass(type).getDeclaredMethod("getHandlerList");
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(method != null) {
+				method.setAccessible(true);
+	            try {
+					return (HandlerList) method.invoke(null);
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return new HandlerList();
     }
 
     private Class<? extends Event> getRegistrationClass(Class<? extends Event> clazz) {
