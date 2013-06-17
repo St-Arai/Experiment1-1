@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -291,8 +292,8 @@ public class SimpleCommandMap implements CommandMap {
     public void registerServerAliases() {
         Map<String, String[]> values = server.getCommandAliases();
 
-        for (String alias : values.keySet()) {
-            String[] targetNames = values.get(alias);
+        for (Entry<String, String[]> alias : values.entrySet()) {
+            String[] targetNames = alias.getValue();
             List<Command> targets = new ArrayList<Command>();
             StringBuilder bad = new StringBuilder();
 
@@ -312,9 +313,9 @@ public class SimpleCommandMap implements CommandMap {
             // We register these as commands so they have absolute priority.
 
             if (targets.size() > 0) {
-                knownCommands.put(alias.toLowerCase(new Locale("en_US")), new MultipleCommandAlias(alias.toLowerCase(new Locale("en_US")), targets.toArray(new Command[targets.size()])));
+                knownCommands.put(alias.getKey().toLowerCase(new Locale("en_US")), new MultipleCommandAlias(alias.getKey().toLowerCase(new Locale("en_US")), targets.toArray(new Command[targets.size()])));
             } else {
-                knownCommands.remove(alias.toLowerCase(new Locale("en_US")));
+                knownCommands.remove(alias.getKey().toLowerCase(new Locale("en_US")));
             }
 
             if (bad.length() > 0) {
