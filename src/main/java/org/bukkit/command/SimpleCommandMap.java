@@ -312,7 +312,7 @@ public class SimpleCommandMap implements CommandMap {
             // We register these as commands so they have absolute priority.
 
             if (targets.size() > 0) {
-                knownCommands.put(alias.toLowerCase(new Locale("en_US")), new MultipleCommandAlias(alias.toLowerCase(new Locale("en_US")), targets.toArray(new Command[0])));
+                knownCommands.put(alias.toLowerCase(new Locale("en_US")), new MultipleCommandAlias(alias.toLowerCase(new Locale("en_US")), targets.toArray(new Command[targets.size()])));
             } else {
                 knownCommands.remove(alias.toLowerCase(new Locale("en_US")));
             }
